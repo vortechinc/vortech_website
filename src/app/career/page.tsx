@@ -13,6 +13,8 @@ import {
 import { Suspense } from 'react';
 import Loading from './loading';
 
+export const revalidate = false;
+
 export default async function CareerPage() {
   const [initialResult, categories, locations] = await Promise.all([
     getJobs({}),

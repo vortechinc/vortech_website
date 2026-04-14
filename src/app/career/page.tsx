@@ -13,7 +13,7 @@ import {
 import { Suspense } from 'react';
 import Loading from './loading';
 
-export const revalidate = false;
+export const dynamic = 'force-dynamic';
 
 export default async function CareerPage() {
   const [initialResult, categories, locations] = await Promise.all([

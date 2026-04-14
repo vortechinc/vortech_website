@@ -1,0 +1,40 @@
+image: node:20
+
+pipelines:
+  default:
+    - step:
+        name: Lint
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run lint
+    - step:
+        name: Build
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run build
+  custom:
+    deploy-staging:
+      - step:
+          name: Deploy to Staging
+          caches:
+            - node
+          script:
+            - chmod +x ./cd/deploy-staging.sh
+            - ./cd/deploy-staging.sh
+    deploy-production:
+      - step:
+          name: Check Branch
+          script:
+            - if [[ $BITBUCKET_BRANCH != "main" ]]; then echo "Production deployments only allowed from main branch"; exit 1; fi
+      - step:
+          name: Deploy to Production
+          caches:
+            - node
+          deployment: production
+          script:
+            - chmod +x ./cd/deploy-production.sh
+            - ./cd/deploy-production.sh

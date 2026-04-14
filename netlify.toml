@@ -2,3 +2,6 @@
   command = "npm run build"
   publish = ".next"
 
+[build.environment]
+  NEXT_PUBLIC_KEYSTONE_URL = "https://vortechinc.io"
+

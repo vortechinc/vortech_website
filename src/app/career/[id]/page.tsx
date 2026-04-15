@@ -8,8 +8,6 @@ import Loading from '../loading';
 import { APPLY } from '@/utils/lang';
 import { images_src } from '@/utils/constants';
 
-export const revalidate = 60;
-
 interface PageProps {
   params: Promise<{
     id: string;

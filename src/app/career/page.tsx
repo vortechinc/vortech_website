@@ -13,8 +13,6 @@ import {
 import { Suspense } from 'react';
 import Loading from './loading';
 
-export const revalidate = 60;
-
 export default async function CareerPage() {
   // Handle build time when env var might be undefined
   if (!process.env.NEXT_PUBLIC_KEYSTONE_URL) {

@@ -1,14 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Deploying to Staging Vortech Site..."
-
-if [ -z "$NEXT_PUBLIC_KEYSTONE_URL" ]; then
-  echo "Error: NEXT_PUBLIC_KEYSTONE_URL is not set"
-  exit 1
-fi
-
-export NEXT_PUBLIC_KEYSTONE_URL
+echo "Deploying to Production Vortech Site..."
 
 npm install
 npm run build

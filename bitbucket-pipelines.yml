@@ -16,25 +16,8 @@ pipelines:
         script:
           - npm install
           - npm run build
-          - echo "Build completed successfully"
-    - step:
-        name: Deploy to Production
-        caches:
-          - node
-        deployment: production
-        script:
-          - chmod +x ./cd/deploy-production.sh
-          - ./cd/deploy-production.sh
-        trigger: manual
   custom:
     deploy-staging:
-      - step:
-          name: Build
-          caches:
-            - node
-          script:
-            - npm install
-            - npm run build
       - step:
           name: Deploy to Staging
           caches:
@@ -47,13 +30,6 @@ pipelines:
           name: Check Branch
           script:
             - if [[ $BITBUCKET_BRANCH != "main" ]]; then echo "Production deployments only allowed from main branch"; exit 1; fi
-      - step:
-          name: Build
-          caches:
-            - node
-          script:
-            - npm install
-            - npm run build
       - step:
           name: Deploy to Production
           caches:

@@ -1,7 +1,7 @@
 import ApplyButton from '@/components/ApplyButton';
 import { DocumentRenderer } from '@/components/common/DocumentRender';
 import Header from '@/components/common/Header';
-import { getImageUrl, getJobById } from '@/utils/keystoneRest';
+import { getImageUrl, getJobById, getJobs } from '@/utils/keystoneRest';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import Loading from '../loading';
@@ -12,6 +12,21 @@ interface PageProps {
   params: Promise<{
     id: string;
   }>;
+}
+
+export async function generateStaticParams() {
+  try {
+    if (!process.env.NEXT_PUBLIC_KEYSTONE_URL) {
+      return [];
+    }
+    const result = await getJobs({ limit: 100, page: 1 });
+    return result.data.map((job) => ({
+      id: job.id,
+    }));
+  } catch (error) {
+    console.error('Error generating static params for careers:', error);
+    return [];
+  }
 }
 
 async function JobDetails({ id }: { id: string }) {

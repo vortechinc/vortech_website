@@ -1,11 +1,11 @@
+# Cloudflare Pages configuration for Next.js
+# Prevents Wrangler from attempting Worker deployment
 name = "vortech-website"
-type = "javascript"
-main = "src/index.ts"
 compatibility_date = "2026-04-15"
 
+# Disable any Worker-related functionality
 [build]
 command = "npm run build"
-output_directory = ".next"
 
-[env.production]
-name = "vortech-website-production"
+# Pages will serve the .next directory directly
+# No Worker deployment will occur

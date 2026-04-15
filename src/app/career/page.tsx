@@ -13,7 +13,7 @@ import {
 import { Suspense } from 'react';
 import Loading from './loading';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function CareerPage() {
   const [initialResult, categories, locations] = await Promise.all([

@@ -8,7 +8,7 @@ import Loading from '../loading';
 import { APPLY } from '@/utils/lang';
 import { images_src } from '@/utils/constants';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
 
 interface PageProps {
   params: Promise<{

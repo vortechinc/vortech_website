@@ -8,6 +8,8 @@ import Loading from '../loading';
 import { APPLY } from '@/utils/lang';
 import { images_src } from '@/utils/constants';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{
     id: string;

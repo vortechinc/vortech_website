@@ -1,7 +1,7 @@
 import ApplyButton from '@/components/ApplyButton';
 import { DocumentRenderer } from '@/components/common/DocumentRender';
 import Header from '@/components/common/Header';
-import { getImageUrl, getJobById, getJobs } from '@/utils/keystoneRest';
+import { getImageUrl, getJobById } from '@/utils/keystoneRest';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import Loading from '../loading';
@@ -14,26 +14,7 @@ interface PageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  try {
-    if (!process.env.NEXT_PUBLIC_KEYSTONE_URL) {
-      return [];
-    }
-    const result = await getJobs({ limit: 100, page: 1 });
-    return result.data.map((job) => ({
-      id: job.id,
-    }));
-  } catch (error) {
-    console.error('Error generating static params for careers:', error);
-    return [];
-  }
-}
-
 async function JobDetails({ id }: { id: string }) {
-  if (!process.env.NEXT_PUBLIC_KEYSTONE_URL) {
-    return <div className="py-10 text-center text-lg text-white">Unable to load job details</div>;
-  }
-
   const job = await getJobById(id);
 
   if (!job) {

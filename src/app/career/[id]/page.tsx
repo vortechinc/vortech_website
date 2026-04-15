@@ -8,7 +8,7 @@ import Loading from '../loading';
 import { APPLY } from '@/utils/lang';
 import { images_src } from '@/utils/constants';
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 60;
 
 interface PageProps {
   params: Promise<{
@@ -17,6 +17,10 @@ interface PageProps {
 }
 
 async function JobDetails({ id }: { id: string }) {
+  if (!process.env.NEXT_PUBLIC_KEYSTONE_URL) {
+    return <div className="py-10 text-center text-lg text-white">Unable to load job details</div>;
+  }
+
   const job = await getJobById(id);
 
   if (!job) {

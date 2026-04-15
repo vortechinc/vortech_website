@@ -13,9 +13,26 @@ import {
 import { Suspense } from 'react';
 import Loading from './loading';
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 60;
 
 export default async function CareerPage() {
+  // Handle build time when env var might be undefined
+  if (!process.env.NEXT_PUBLIC_KEYSTONE_URL) {
+    return (
+      <div className="bg-dark-black min-h-screen w-full max-w-screen space-y-16">
+        <Header />
+        <div className="mt:pb-12 0 flex flex-col space-y-6 px-4 pt-28 pb-4 md:px-10 md:pt-48 md:pb-0 lg:px-14 xl:px-32">
+          <Title title={CAREER_TITLE} />
+          <SubTitle className="text-white" subTitle={CAREER_SUB_TITLE} />
+          <Description
+            className="max-w-6xl font-normal text-white md:max-w-4xl lg:text-base 2xl:text-base"
+            text={CAREER_DESCRIPTION}
+          />
+        </div>
+      </div>
+    );
+  }
+
   const [initialResult, categories, locations] = await Promise.all([
     getJobs({}),
     getCategories(),

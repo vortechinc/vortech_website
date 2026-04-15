@@ -6,6 +6,8 @@ import path from 'path';
 import { dataURL } from '@/utils/constants';
 import Header from '@/components/common/Header';
 
+export const dynamic = 'force-dynamic';
+
 const getPrivacyContent = async () => {
   const filePath = path.join(process.cwd(), dataURL.terms);
   const markdown = await fs.readFile(filePath, 'utf8');

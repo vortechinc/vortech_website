@@ -34,6 +34,7 @@ export default buildConfig({
   collections: [Users, Media, Locations, Categories, Jobs],
   cors: allowedOrigins,
   csrf: allowedOrigins,
+  debug: true,
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || ''

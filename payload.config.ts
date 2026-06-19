@@ -16,7 +16,7 @@ const serverURL =
   process.env.PAYLOAD_PUBLIC_SERVER_URL ||
   process.env.NEXT_PUBLIC_SERVER_URL ||
   process.env.RAILWAY_PUBLIC_DOMAIN && `https://${process.env.RAILWAY_PUBLIC_DOMAIN}` ||
-  '';
+  'https://astonishing-determination-production-a6f4.up.railway.app';
 
 const allowedOrigins = [
   serverURL,

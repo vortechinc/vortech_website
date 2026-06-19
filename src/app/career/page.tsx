@@ -3,7 +3,11 @@ import Header from '@/components/common/Header';
 import SubTitle from '@/components/common/SubTitle';
 import Title from '@/components/common/Title';
 import JobContent from '@/components/JobContent';
-import { getCategories, getJobs, getLocations } from '@/utils/keystoneRest';
+import {
+  careerCategories,
+  careerLocations,
+  getCareerJobs
+} from '@/data/career';
 import {
   CAREER_DESCRIPTION,
   CAREER_SUB_TITLE,
@@ -13,15 +17,8 @@ import {
 import { Suspense } from 'react';
 import Loading from './loading';
 
-export const dynamic = 'force-dynamic';
-
 export default async function CareerPage() {
-  const [initialResult, categories, locations] = await Promise.all([
-    getJobs({}),
-    getCategories(),
-    getLocations()
-  ]);
-
+  const initialResult = getCareerJobs({});
   const initialJobs = initialResult.data;
 
   return (
@@ -38,8 +35,8 @@ export default async function CareerPage() {
         <Suspense fallback={<Loading />}>
           <JobContent
             initialJobs={initialJobs}
-            categories={categories}
-            locations={locations}
+            categories={careerCategories}
+            locations={careerLocations}
             initialTotal={initialResult.pagination.total}
           />
         </Suspense>

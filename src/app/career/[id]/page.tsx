@@ -1,14 +1,17 @@
 import ApplyButton from '@/components/ApplyButton';
 import { DocumentRenderer } from '@/components/common/DocumentRender';
 import Header from '@/components/common/Header';
-import { getImageUrl, getJobById } from '@/utils/keystoneRest';
+import { careerJobs, getCareerJobById } from '@/data/career';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import Loading from '../loading';
 import { APPLY } from '@/utils/lang';
 import { images_src } from '@/utils/constants';
+import { notFound } from 'next/navigation';
 
-export const dynamic = 'force-dynamic';
+export function generateStaticParams() {
+  return careerJobs.map((job) => ({ id: job.id }));
+}
 
 interface PageProps {
   params: Promise<{
@@ -17,17 +20,17 @@ interface PageProps {
 }
 
 async function JobDetails({ id }: { id: string }) {
-  const job = await getJobById(id);
+  const job = getCareerJobById(id);
 
   if (!job) {
-    return <div className="py-10 text-center text-lg">Job not found</div>;
+    notFound();
   }
 
   return (
     <div className="w-full space-y-8">
       <div className="flex flex-col gap-4 md:flex-row">
         <Image
-          src={getImageUrl(job?.image?.url) || images_src.DEFAULT_JOB_IMAGE}
+          src={job?.image?.url || images_src.DEFAULT_JOB_IMAGE}
           alt={`${job.position} logo`}
           width={120}
           height={120}

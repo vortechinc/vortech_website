@@ -1,6 +1,6 @@
 'use client';
+import { getCareerJobs } from '@/data/career';
 import { JOB_PAGE_SIZE } from '@/utils/constants';
-import { getImageUrl, getJobs } from '@/utils/keystoneRest';
 import { Category, Job, Location } from '@/utils/types';
 import { ArrowRight, SearchIcon } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
@@ -50,7 +50,7 @@ const JobContent = ({
       setCurrentFilters({ search, locationId, categoryId });
 
       try {
-        const result = await getJobs({
+        const result = getCareerJobs({
           search,
           locationId,
           categoryId,
@@ -78,14 +78,11 @@ const JobContent = ({
     const nextPage = currentPage + 1;
 
     try {
-      const result = await getJobs(
-        {
-          ...currentFilters,
-          page: nextPage,
-          limit: JOB_PAGE_SIZE
-        },
-        process.env.NEXT_PUBLIC_KEYSTONE_URL
-      );
+      const result = getCareerJobs({
+        ...currentFilters,
+        page: nextPage,
+        limit: JOB_PAGE_SIZE
+      });
 
       setJobs((prevJobs) => [...prevJobs, ...result.data]);
       setCurrentPage(nextPage);
@@ -129,7 +126,7 @@ const JobContent = ({
               <JobItem
                 jobName={item.position}
                 location={item?.location?.name}
-                imageUrl={getImageUrl(item?.image?.url)}
+                imageUrl={item?.image?.url || ''}
                 level={item?.category?.name}
                 key={item.id}
                 id={item.id}

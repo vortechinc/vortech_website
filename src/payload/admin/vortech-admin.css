@@ -1,0 +1,184 @@
+:root {
+  --theme-elevation-0: #090909;
+  --theme-elevation-50: #111111;
+  --theme-elevation-100: #181818;
+  --theme-elevation-150: #202020;
+  --theme-elevation-200: #292929;
+  --theme-elevation-250: #333333;
+  --theme-elevation-300: #3d3d3d;
+  --theme-elevation-400: #575757;
+  --theme-elevation-500: #737373;
+  --theme-elevation-600: #969696;
+  --theme-elevation-700: #b8b8b8;
+  --theme-elevation-800: #d7d7d7;
+  --theme-elevation-900: #f4f4f4;
+  --theme-elevation-1000: #ffffff;
+  --theme-success-500: #f36f21;
+  --theme-warning-500: #f36f21;
+  --theme-error-500: #ff5a5f;
+  --theme-text: #f7f4ef;
+}
+
+[data-theme='light'] {
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #faf7f2;
+  --theme-elevation-100: #f4eee7;
+  --theme-elevation-150: #ebe1d7;
+  --theme-elevation-200: #dfd2c5;
+  --theme-elevation-250: #d3c3b5;
+  --theme-elevation-300: #c5b3a4;
+  --theme-elevation-400: #9a8577;
+  --theme-elevation-500: #77655b;
+  --theme-elevation-600: #5f5049;
+  --theme-elevation-700: #423733;
+  --theme-elevation-800: #2b2422;
+  --theme-elevation-900: #171211;
+  --theme-elevation-1000: #090909;
+  --theme-text: #1b1514;
+}
+
+body {
+  background:
+    radial-gradient(circle at top right, rgba(243, 111, 33, 0.16), transparent 34rem),
+    linear-gradient(135deg, #090909 0%, #1a1110 44%, #520304 100%);
+}
+
+.vortech-admin-logo {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.85rem;
+}
+
+.vortech-admin-logo img {
+  height: 42px;
+  object-fit: contain;
+  width: auto;
+}
+
+.vortech-admin-logo span {
+  color: #f36f21;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vortech-admin-icon {
+  align-items: center;
+  background: linear-gradient(135deg, #f36f21, #520304);
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 800;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
+
+.vortech-login-intro,
+.vortech-dashboard-intro {
+  background:
+    linear-gradient(135deg, rgba(82, 3, 4, 0.95), rgba(9, 9, 9, 0.92)),
+    url('/assets/images/home-banner.jpg') center / cover;
+  border: 1px solid rgba(243, 111, 33, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+  color: #ffffff;
+}
+
+.vortech-login-intro {
+  margin-bottom: 1.5rem;
+  max-width: 440px;
+  padding: 1.35rem;
+}
+
+.vortech-login-intro p,
+.vortech-dashboard-intro p {
+  color: #f36f21;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.65rem;
+  text-transform: uppercase;
+}
+
+.vortech-login-intro h1,
+.vortech-dashboard-intro h1 {
+  color: #ffffff;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  line-height: 1.05;
+  margin: 0 0 0.75rem;
+}
+
+.vortech-login-intro span,
+.vortech-dashboard-intro span {
+  color: rgba(255, 255, 255, 0.78);
+  display: block;
+  line-height: 1.55;
+}
+
+.vortech-dashboard-intro {
+  align-items: end;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  padding: 1.5rem;
+}
+
+.template-minimal {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(243, 111, 33, 0.18), transparent 22rem),
+    linear-gradient(135deg, #090909, #520304);
+}
+
+.template-minimal__wrap {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(243, 111, 33, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+.login__brand {
+  margin-bottom: 1rem;
+}
+
+.nav,
+.nav__wrap {
+  background: #090909;
+}
+
+.nav a,
+.nav button {
+  border-radius: 6px;
+}
+
+.nav a:hover,
+.nav button:hover {
+  color: #f36f21;
+}
+
+.btn--style-primary,
+button[type='submit'] {
+  background: #f36f21;
+  border-color: #f36f21;
+}
+
+.btn--style-primary:hover,
+button[type='submit']:hover {
+  background: #d95f1c;
+  border-color: #d95f1c;
+}
+
+@media (max-width: 768px) {
+  .vortech-dashboard-intro {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .vortech-admin-logo span {
+    display: none;
+  }
+}

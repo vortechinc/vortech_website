@@ -26,10 +26,24 @@ const allowedOrigins = [
 
 export default buildConfig({
   admin: {
+    components: {
+      beforeDashboard: ['/src/payload/admin/VortechDashboardIntro#VortechDashboardIntro'],
+      beforeLogin: ['/src/payload/admin/VortechLoginIntro#VortechLoginIntro'],
+      graphics: {
+        Icon: '/src/payload/admin/VortechIcon#VortechIcon',
+        Logo: '/src/payload/admin/VortechLogo#VortechLogo'
+      }
+    },
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname)
-    }
+    },
+    meta: {
+      description: 'Vortech content management console',
+      favicon: '/favicon.ico',
+      titleSuffix: '- Vortech CMS'
+    },
+    theme: 'dark'
   },
   collections: [Users, Media, Locations, Categories, Jobs],
   cors: allowedOrigins,

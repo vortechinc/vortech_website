@@ -12,6 +12,17 @@ import { Users } from './src/payload/collections/Users';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+const serverURL =
+  process.env.PAYLOAD_PUBLIC_SERVER_URL ||
+  process.env.NEXT_PUBLIC_SERVER_URL ||
+  process.env.RAILWAY_PUBLIC_DOMAIN && `https://${process.env.RAILWAY_PUBLIC_DOMAIN}` ||
+  '';
+
+const allowedOrigins = [
+  serverURL,
+  'https://vortechinc.io',
+  'https://www.vortechinc.io'
+].filter(Boolean);
 
 export default buildConfig({
   admin: {
@@ -21,12 +32,15 @@ export default buildConfig({
     }
   },
   collections: [Users, Media, Locations, Categories, Jobs],
+  cors: allowedOrigins,
+  csrf: allowedOrigins,
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || ''
     }
   }),
   editor: lexicalEditor(),
+  serverURL,
   secret: process.env.PAYLOAD_SECRET || '',
   sharp,
   typescript: {

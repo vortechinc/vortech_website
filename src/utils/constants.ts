@@ -33,22 +33,22 @@ export enum sizes {
 }
 
 export const stats = [
-  { value: 247, label: 'Employees', max: 1000, text: '247', iconType: 'users' },
-  { value: 8, label: 'Locations', max: 20, text: '8', iconType: 'mapPin' },
+  { value: 350, label: 'Employees', max: 1000, text: '350', iconType: 'users' },
+  { value: 16, label: 'Locations', max: 20, text: '16', iconType: 'mapPin' },
   {
-    value: 123,
+    value: 100,
     label: 'Partners Worldwide',
-    text: '123',
+    text: '100+',
     max: 180,
     iconType: 'globe'
-  }
-  // {
-  //   value: 200,
-  //   label: 'Capital',
-  //   max: 280,
-  //   text: '$200M',
-  //   iconType: 'dollarSign'
-  // }
+  },
+   {
+     value: 200,
+     label: 'Capital',
+     max: 280,
+     text: '$200M+',
+     iconType: 'dollarSign'
+   }
 ];
 
 export const sources_video = {

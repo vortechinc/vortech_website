@@ -6,14 +6,22 @@ import { useEffect, useState } from 'react';
 import { feature } from 'topojson-client';
 
 const locations = [
-  { id: 1, name: 'Thailand (Bangkok)', lng: 100.5, lat: 13.75 },
-  { id: 2, name: 'Romania (Bucharest)', lng: 26.1, lat: 44.43 },
-  { id: 3, name: 'Vietnam (Ho Chi Minh)', lng: 106.63, lat: 10.82 },
-  { id: 4, name: 'India (Hyderabad)', lng: 78.48, lat: 17.38 },
-  { id: 5, name: 'Taiwan (Taipei)', lng: 121.56, lat: 25.03 },
-  { id: 6, name: 'Bulgaria (Sofia)', lng: 23.32, lat: 42.7 },
+  { id: 1, name: 'UK (London)', lng: -0.13, lat: 51.51 },
+  { id: 2, name: 'Romania (Bucharest)', lng: 26.10, lat: 44.43 },
+  { id: 3, name: 'Vietnam (Ho Chi Minh City)', lng: 106.63, lat: 10.82 },
+  { id: 4, name: 'Thailand (Bangkok)', lng: 100.50, lat: 13.75 },
+  { id: 5, name: 'India (Hyderabad)', lng: 78.48, lat: 17.38 },
+  { id: 6, name: 'Bulgaria (Sofia)', lng: 23.32, lat: 40.70 },
   { id: 7, name: 'Sweden (Stockholm)', lng: 18.07, lat: 59.33 },
-  { id: 8, name: 'UK (London)', lng: -0.13, lat: 51.51 }
+  { id: 8, name: 'UAE (Dubai)', lng: 55.27, lat: 25.20 },
+  { id: 9, name: 'Malta (Valletta)', lng: 14.51, lat: 35.90 },
+  { id: 10, name: 'Nigeria (Lagos)', lng: 3.38, lat: 6.52 },
+  { id: 11, name: 'South Africa (Johannesburg)', lng: 28.05, lat: -26.20 },
+  { id: 12, name: 'Uzbekistan (Tashkent)', lng: 69.24, lat: 41.31 },
+  { id: 13, name: 'Kazakhstan (Almaty)', lng: 76.89, lat: 43.24 },
+  { id: 14, name: 'Kyrgyzstan (Bishkek)', lng: 69.60, lat: 35.87 },
+  { id: 15, name: 'Argentina (Buenos Aires)', lng: -58.38, lat: -34.60 },
+  { id: 16, name: 'Brazil (São Paulo)', lng: -46.63, lat: -23.55 }
 ];
 
 export default function GlobalMap() {
@@ -84,13 +92,46 @@ export default function GlobalMap() {
 
             return (
               <g key={loc.id} className="group cursor-pointer">
+                {/* Outer Ring - blinking */}
+                <circle
+                  className="marker-ring-outer"
+                  style={{
+                    animationDelay: `${loc.id * 0.12}s`,
+                  }}
+                  cx={x}
+                  cy={y}
+                  r={isMobile ? 8 : isTablet ? 10 : 12}
+                  fill="none"
+                  stroke="#dc2626"
+                  strokeWidth="1.5"
+                />
+
+                {/* Middle Ring - blinking */}
+                <circle
+                  className="marker-ring-middle"
+                  style={{
+                    animationDelay: `${loc.id * 0.12 + 0.25}s`,
+                  }}
+                  cx={x}
+                  cy={y}
+                  r={isMobile ? 5 : isTablet ? 6 : 7}
+                  fill="white"
+                  fillOpacity="0.9"
+                  stroke="#dc2626"
+                  strokeWidth="1.5"
+                />
+
+                {/* Center Dot - fixed */}
                 <circle
                   cx={x}
                   cy={y}
-                  r={isMobile ? 4 : isTablet ? 6 : 8}
-                  className="fill-orange stroke-white transition-all group-hover:fill-orange-600"
-                  strokeWidth={isMobile ? 1.5 : 2}
+                  r={isMobile ? 4 : isTablet ? 5 : 7}
+                  fill="#dc2626"
+                  stroke="white"
+                  strokeWidth="1"
                 />
+
+                {/* Tooltip */}
 
                 <g className="opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                   <rect

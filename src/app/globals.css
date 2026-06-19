@@ -16,6 +16,113 @@
   --color-yellow-light: #ffff99;
 }
 
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.4);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.map-marker {
+  animation: heartbeat 2s infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.marker-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.marker-pulse .pulse-ring {
+  animation: pulseRing 2.2s ease-out infinite;
+}
+
+.marker-pulse .center-dot {
+  animation: blinkDot 1.2s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes blinkDot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.marker-dot {
+  animation: markerBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes markerBlink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.marker-ring-outer {
+  animation: ringBlink 1.6s ease-in-out infinite;
+}
+
+.marker-ring-middle {
+  animation: ringBlink 1.6s ease-in-out infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes ringBlink {
+  0% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -29,6 +136,7 @@ body {
   height: 100%;
   overflow-y: scroll;
 }
+
 section {
   scroll-snap-align: start;
 }

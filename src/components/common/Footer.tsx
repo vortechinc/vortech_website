@@ -13,8 +13,7 @@ const Footer = () => {
               Global Presence
             </h3>
             <p className="text-sm leading-relaxed text-white md:text-base">
-              UK • Romania • Vietnam • Thailand • India • Taiwan • Bulgaria •
-              Sweden
+              UK • Romania • Vietnam • Thailand • India  • Bulgaria • Sweden • UAE/Dubai • Malta • Nigeria • South Africa • UZ • KZ • KG • Argentina • Brazil
             </p>
             <Link
               href="/#global-map"

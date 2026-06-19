@@ -1,18 +1,15 @@
+import type { NextConfig } from 'next';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',      
-        hostname: 'vortechinc.io', 
-        pathname: '/**',        
+        protocol: 'https',
+        hostname: 'vortechinc.io',
+        pathname: '/**',
       },
     ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   }
 };
 
-module.exports = nextConfig;
+export default nextConfig;

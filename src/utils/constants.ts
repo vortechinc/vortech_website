@@ -1,5 +1,9 @@
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon
+} from '@/components/SocialIcons';
 import ThreadsIcon from '@/components/ThreadsIcon';
-import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 export const ROUTES = {
   HOME: '/',
@@ -16,9 +20,9 @@ export const ROUTES = {
 };
 
 export const FOOTER_SOCIALS = [
-  { href: ROUTES.LINKEDIN, icon: Linkedin },
-  { href: ROUTES.FACEBOOK, icon: Facebook },
-  { href: ROUTES.INSTAGRAM, icon: Instagram },
+  { href: ROUTES.LINKEDIN, icon: LinkedinIcon },
+  { href: ROUTES.FACEBOOK, icon: FacebookIcon },
+  { href: ROUTES.INSTAGRAM, icon: InstagramIcon },
   { href: ROUTES.X, icon: ThreadsIcon }
 ];
 export const navItems = [

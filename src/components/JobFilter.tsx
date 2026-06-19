@@ -3,7 +3,7 @@
 import { Category, Location } from '@/utils/types';
 import { ChevronDown, LucideSearch } from 'lucide-react';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 
 type FormValues = {
   search: string;
@@ -18,7 +18,7 @@ interface JobFilterProps {
 }
 
 const JobFilter = ({ onFilter, locations, categories }: JobFilterProps) => {
-  const { register, watch, getValues } = useForm<FormValues>({
+  const { register, control, getValues } = useForm<FormValues>({
     defaultValues: {
       search: '',
       location: '',
@@ -26,8 +26,8 @@ const JobFilter = ({ onFilter, locations, categories }: JobFilterProps) => {
     }
   });
 
-  const location = watch('location');
-  const category = watch('category');
+  const location = useWatch({ control, name: 'location' });
+  const category = useWatch({ control, name: 'category' });
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -3,11 +3,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import fs from 'fs/promises';
 import path from 'path';
-import { dataURL } from '@/utils/constants';
 import Header from '@/components/common/Header';
 
 const getPrivacyContent = async () => {
-  const filePath = path.join(process.cwd(), dataURL.terms);
+  const filePath = path.join(process.cwd(), 'src', 'data', 'terms.md');
   const markdown = await fs.readFile(filePath, 'utf8');
   return { content: markdown };
 };

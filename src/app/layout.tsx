@@ -1,12 +1,6 @@
 import Footer from '@/components/common/Footer';
 import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
 import './globals.css';
-
-const roboto = Roboto({
-  subsets: ['latin'],
-  variable: '--font-roboto'
-});
 
 export const metadata: Metadata = {
   title: 'Vortech'
@@ -32,7 +26,7 @@ export default function RootLayout({
         <meta property="og:description" content="Vortech" />
         <meta name="twitter:description" content="Vortech" />
       </head>
-      <body className={roboto.className}>
+      <body>
         <main>{children}</main>
         <Footer />
       </body>

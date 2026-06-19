@@ -1,11 +1,8 @@
 import config from '@payload-config';
 import '@payloadcms/next/css';
-import {
-  handleServerFunctions,
-  RootLayout
-} from '@payloadcms/next/layouts';
-import type { ServerFunctionClient } from 'payload';
+import { RootLayout } from '@payloadcms/next/layouts';
 import { importMap } from './admin/importMap.js';
+import { serverFunction } from './serverFunction';
 
 export default function PayloadLayout({
   children
@@ -16,7 +13,7 @@ export default function PayloadLayout({
     <RootLayout
       config={config}
       importMap={importMap}
-      serverFunction={handleServerFunctions as ServerFunctionClient}
+      serverFunction={serverFunction}
     >
       {children}
     </RootLayout>

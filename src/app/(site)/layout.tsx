@@ -1,6 +1,6 @@
 import Footer from '@/components/common/Footer';
 import type { Metadata } from 'next';
-import './globals.css';
+import '../globals.css';
 
 export const metadata: Metadata = {
   title: 'Vortech'

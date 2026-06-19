@@ -15,7 +15,6 @@
     "payload": "payload",
     "payload:generate:types": "payload generate:types",
     "payload:generate:importmap": "payload generate:importmap",
-    "payload:push-schema": "tsx scripts/pushPayloadSchema.ts",
     "payload:migrate": "payload migrate",
     "payload:migrate:create": "payload migrate:create",
     "payload:migrate:status": "payload migrate:status"

@@ -1,7 +1,7 @@
 import ApplyButton from '@/components/ApplyButton';
 import { DocumentRenderer } from '@/components/common/DocumentRender';
 import Header from '@/components/common/Header';
-import { careerJobs, getCareerJobById } from '@/data/career';
+import { getPublishedJobBySlug } from '@/utils/payloadCareer';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import Loading from '../loading';
@@ -9,9 +9,7 @@ import { APPLY } from '@/utils/lang';
 import { images_src } from '@/utils/constants';
 import { notFound } from 'next/navigation';
 
-export function generateStaticParams() {
-  return careerJobs.map((job) => ({ id: job.id }));
-}
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: Promise<{
@@ -20,7 +18,7 @@ interface PageProps {
 }
 
 async function JobDetails({ id }: { id: string }) {
-  const job = getCareerJobById(id);
+  const job = await getPublishedJobBySlug(id);
 
   if (!job) {
     notFound();

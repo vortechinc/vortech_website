@@ -1,7 +1,6 @@
 'use client';
-import { getCareerJobs } from '@/data/career';
 import { JOB_PAGE_SIZE } from '@/utils/constants';
-import { Category, Job, Location } from '@/utils/types';
+import { Category, Job, Location, Pagable } from '@/utils/types';
 import { ArrowRight, SearchIcon } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
 import JobFilter from './JobFilter';
@@ -37,6 +36,35 @@ const JobContent = ({
 
   const isFirstFilterCall = useRef(true);
 
+  const fetchJobs = async ({
+    search,
+    locationId,
+    categoryId,
+    page,
+    limit
+  }: {
+    search: string;
+    locationId: string;
+    categoryId: string;
+    page: number;
+    limit: number;
+  }) => {
+    const params = new URLSearchParams({
+      search,
+      locationId,
+      categoryId,
+      page: String(page),
+      limit: String(limit)
+    });
+    const response = await fetch(`/api/career/jobs?${params.toString()}`);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch jobs');
+    }
+
+    return response.json() as Promise<Pagable<Job>>;
+  };
+
   const handleFilter = useCallback(
     async (search: string, locationId: string, categoryId: string) => {
       if (isFirstFilterCall.current) {
@@ -50,7 +78,7 @@ const JobContent = ({
       setCurrentFilters({ search, locationId, categoryId });
 
       try {
-        const result = getCareerJobs({
+        const result = await fetchJobs({
           search,
           locationId,
           categoryId,
@@ -78,7 +106,7 @@ const JobContent = ({
     const nextPage = currentPage + 1;
 
     try {
-      const result = getCareerJobs({
+      const result = await fetchJobs({
         ...currentFilters,
         page: nextPage,
         limit: JOB_PAGE_SIZE

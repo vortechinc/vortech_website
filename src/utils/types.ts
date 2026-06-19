@@ -29,7 +29,7 @@ export type RichTextDocument = DocumentNode[] | { document: DocumentNode[] };
 export type Job = {
   id: string;
   position: string;
-  description: RichTextDocument;
+  description: RichTextDocument | string;
   content?: string;
   location?: Location;
   category?: Category;

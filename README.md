@@ -32,9 +32,30 @@ KEYSTONE_WEBHOOK_SECRET=your_webhook_secret_key
 NEXT_PUBLIC_EMAIL_ADDRESS=info@vortechinc.io
 
 NEXT_PUBLIC_JOB_PAGE_SIZE=10
+
+\# Payload CMS
+
+DATABASE_URL=postgres://user:password@host:5432/database
+
+PAYLOAD_SECRET=generate-a-long-random-secret
 ```
 
 > Never commit .env to Git.
+
+## Payload CMS
+
+The admin panel is available at `/admin`.
+
+Useful commands:
+
+```
+npm run payload:generate:types
+npm run payload:generate:importmap
+npm run payload:migrate:create
+npm run payload:migrate
+```
+
+Career data is read from Payload when `DATABASE_URL` and `PAYLOAD_SECRET` are configured. Without those variables, the public Career page falls back to local empty data so the site can still build and run.
 
 ## Production Build
 
